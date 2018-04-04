@@ -64,22 +64,16 @@ public class loadTest
         e.printStackTrace();
       }
 	    try {
-  		  for (int i = 0; i < 1000; i++) {
+  		  for (int i = 0; i < 100; i++) {
   			  new Thread("" + i){
             public void run(){
-              for (int i = 0; i < 1000; i++) {
-        			  new Thread("" + i){
-                  public void run(){
-              			try {
-              				while (true)
-              					ApiUtils.prepareAndCallTransactionFlowSystem(AppState.account);
-              				}
-              			} catch (Exception e) {
-              				 e.printStackTrace();
-              			}
-                  }
-                }.start();
-      		    }
+        			try {
+        				for (int x = 0; x < 1000000; x++) {
+        					ApiUtils.prepareAndCallTransactionFlowSystem(AppState.account);
+        				}
+        			} catch (Exception e) {
+        				 e.printStackTrace();
+        			}
             }
           }.start();
 		    }
