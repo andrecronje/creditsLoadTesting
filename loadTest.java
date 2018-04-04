@@ -71,7 +71,7 @@ public class loadTest
         			  new Thread("" + i){
                   public void run(){
               			try {
-              				for (int x = 0; x < 1000000; x++) {
+              				while (true)
               					ApiUtils.prepareAndCallTransactionFlowSystem(AppState.account);
               				}
               			} catch (Exception e) {
