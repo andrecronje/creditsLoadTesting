@@ -67,21 +67,27 @@ public class loadTest
     }
     try {
 	    try {
-		      AppState.account = "TPS test single node";
+		      AppState.account = "accXpfvxnZa8txuxpjyPqzBaqYPHqYu2rwn34lL8rjI=";
       } catch (Exception e) {
         e.printStackTrace();
       }
 	    try {
-  		  for (int i = 0; i < 100; i++) {
+  		  for (int i = 0; i < 1000; i++) {
   			  new Thread("" + i){
             public void run(){
-        			try {
-        				for (int x = 0; x < 1000; x++) {
-        					ApiUtils.prepareAndCallTransactionFlowSystem(AppState.account);
-        				}
-        			} catch (Exception e) {
-        				 e.printStackTrace();
-        			}
+              for (int i = 0; i < 1000; i++) {
+        			  new Thread("" + i){
+                  public void run(){
+              			try {
+              				for (int x = 0; x < 1000000; x++) {
+              					ApiUtils.prepareAndCallTransactionFlowSystem(AppState.account);
+              				}
+              			} catch (Exception e) {
+              				 e.printStackTrace();
+              			}
+                  }
+                }.start();
+      		    }
             }
           }.start();
 		    }

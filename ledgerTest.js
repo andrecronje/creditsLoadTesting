@@ -1,7 +1,7 @@
 const axios = require('axios')
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 
-var globalPage = 15
+var globalPage = 1
 findMax(globalPage)
 
 function findMax(page) {
@@ -12,7 +12,7 @@ function findMax(page) {
       return false
     }
     const max = r.data.ledgers.filter(function (f) {
-      return (f.txCount > 200);
+      return (f.txCount > 300);
     })
     if (max.length == 0) {
       console.log(globalPage)
